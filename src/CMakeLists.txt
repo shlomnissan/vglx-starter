@@ -2,8 +2,8 @@ find_package(vglx REQUIRED)
 
 set(SOURCE_CODE
     main.cpp
-    application.cpp
-    application.hpp
+    scene.cpp
+    scene.hpp
 )
 
 add_executable(vglx-starter ${SOURCE_CODE})

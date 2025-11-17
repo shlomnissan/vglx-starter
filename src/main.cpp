@@ -5,8 +5,30 @@
 ===========================================================================
 */
 
-#include "application.hpp"
+#include <vglx/vglx.hpp>
+
+#include "scene.hpp"
+
+struct Application : public vglx::Application {
+    auto Configure() ->  Application::Parameters override {
+        return {
+            .title = "VGLX Starter",
+            .vsync = true,
+            .show_stats = true
+        };
+    }
+
+    auto CreateScene() -> std::shared_ptr<vglx::Scene> override {
+        return std::make_shared<Scene>();
+    }
+
+    auto Update([[maybe_unused]] float delta) -> bool override {
+        return true;
+    }
+};
 
 auto main() -> int {
+    Application().Start();
+
     return 0;
 }
