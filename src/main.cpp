@@ -13,8 +13,9 @@ struct Application : public vglx::Application {
     auto Configure() ->  Application::Parameters override {
         return {
             .title = "VGLX Starter",
-            .vsync = true,
-            .show_stats = true
+            .vsync = false,
+            .show_stats = true,
+            .antialiasing = 4
         };
     }
 
