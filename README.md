@@ -13,7 +13,9 @@ This project is intentionally small. Its purpose is to help you verify your inst
 
 ### Requirements
 
-The starter expects VGLX to be installed on your system. See the [VGLX Installation Guide](https://www.vglx.org/manual/installation) for instructions. You will need:
+The starter expects VGLX to be installed on your system. See the [VGLX Installation Guide](https://www.vglx.org/manual/installation) for instructions.
+
+You will need:
 - C++23-capable compiler
 - CMake 3.20+
 - An OpenGL 4.1+ driver
