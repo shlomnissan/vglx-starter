@@ -61,21 +61,6 @@ If you’re still stuck, open an issue in the main VGLX repo and include your OS
 ## License
 
 ```
-                      ,--,                
-                    ,--.'|                
-                    |  | :                
-     .---. ,----._,.:  : '    ,--,  ,--,  
-   /.  ./|/   /  ' /|  ' |    |'. \/ .`|  
- .-' . ' |   :     |'  | |    '  \/  / ;  
-/___/ \: |   | .\  .|  | :     \  \.' /   
-.   \  ' .   ; ';  |'  : |__    \  ;  ;   
- \   \   '   .   . ||  | '.'|  / \  \  \  
-  \   \   `---`-'| |;  :    ;./__;   ;  \ 
-   \   \ |.'__/\_: ||  ,   / |   :/\  \ ; 
-    '---" |   :    : ---`-'  `---'  `--`  
-           \   \  /                       
-            `--`-'
-
 Copyright (c) 2025-present Shlomi Nissan
 https://www.vglx.org
 
