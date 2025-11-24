@@ -9,10 +9,13 @@
 
 #include "scene.hpp"
 
-struct Application : public vglx::Application {
-    auto Configure() ->  Application::Parameters override {
+struct App : public vglx::Application {
+    auto Configure() ->  App::Parameters override {
         return {
             .title = "VGLX Starter",
+            .clear_color = {0x000000},
+            .width = 1024,
+            .height = 768,
             .antialiasing = 4,
             .vsync = false,
             .show_stats = true,
@@ -29,7 +32,7 @@ struct Application : public vglx::Application {
 };
 
 auto main() -> int {
-    Application().Start();
+    App().Start();
 
     return 0;
 }

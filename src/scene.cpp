@@ -7,16 +7,12 @@
 
 #include "scene.hpp"
 
-namespace {
-
-auto cube = vglx::Mesh::Create(
-    vglx::BoxGeometry::Create(),
-    vglx::PhongMaterial::Create(0x049EF4)
-);
-
-}
-
 Scene::Scene() {
+    brick_ = vglx::Mesh::Create(
+        vglx::BoxGeometry::Create(),
+        vglx::PhongMaterial::Create(0x049EF4)
+    );
+
     auto ambient_light = vglx::AmbientLight::Create({
         .color = 0xFFFFFF,
         .intensity = .5f
@@ -24,29 +20,26 @@ Scene::Scene() {
 
     auto point_light = vglx::PointLight::Create({
         .color = 0xFFFFFF,
-        .intensity = 1.0f
+        .intensity = 1.0f,
+        .attenuation = {
+            .base = 1.0f,
+            .linear = 0.0f,
+            .quadratic = 0.0f
+        }
     });
 
     point_light->transform.Translate({2.0f, 2.5f, 4.0f});
 
-    auto dome = vglx::Mesh::Create(
-        vglx::SphereGeometry::Create({6.0f}),
-        vglx::PhongMaterial::Create(0x000011)
-    );
-
-    dome->GetMaterial()->two_sided = true;
-    dome->Add(ambient_light);
-    dome->Add(point_light);
-    dome->Add(cube);
-
-    this->Add(dome);
+    Add(ambient_light);
+    Add(point_light);
+    Add(brick_);
 }
 
 auto Scene::OnAttached(vglx::SharedContextPointer context) -> void {
-    this->Add(vglx::OrbitControls::Create(context->camera, {.radius = 3.0f}));
+    context->camera->TranslateZ(3.0f);
 }
 
 auto Scene::OnUpdate(float delta) -> void {
-    cube->RotateX(1.0 * delta);
-    cube->RotateY(1.0 * delta);
+    brick_->RotateX(1.0 * delta);
+    brick_->RotateY(1.0 * delta);
 }
