@@ -10,13 +10,6 @@ set(SOURCE_CODE
 
 add_executable(${EXECUTABLE} ${SOURCE_CODE})
 
-target_compile_options(${PROJECT_NAME} PRIVATE
-    $<$<CXX_COMPILER_ID:GNU>:-fno-rtti -fno-exceptions>
-    $<$<CXX_COMPILER_ID:Clang>:-fno-rtti -fno-exceptions>
-    $<$<CXX_COMPILER_ID:AppleClang>:-fno-rtti -fno-exceptions>
-    $<$<CXX_COMPILER_ID:MSVC>:/GR>
-)
-
 target_link_libraries(${PROJECT_NAME} PRIVATE vglx::vglx)
 
 if(WIN32)
