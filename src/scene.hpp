@@ -18,5 +18,5 @@ public:
     auto OnUpdate(float delta) -> void override;
 
 private:
-    std::shared_ptr<vglx::Mesh> brick_;
+    vglx::Mesh* brick_ {nullptr};
 };
