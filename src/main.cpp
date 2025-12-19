@@ -22,8 +22,8 @@ struct App : public vglx::Application {
         };
     }
 
-    auto CreateScene() -> std::shared_ptr<vglx::Scene> override {
-        return std::make_shared<Scene>();
+    auto CreateScene() -> std::unique_ptr<vglx::Scene> override {
+        return std::make_unique<Scene>();
     }
 
     auto Update([[maybe_unused]] float delta) -> bool override {
