@@ -16,8 +16,8 @@ struct App : public vglx::Application {
             .clear_color = {0x000000},
             .width = 1024,
             .height = 768,
-            .antialiasing = 4,
-            .vsync = false,
+            .sample_count = 4,
+            .vsync = true,
             .show_stats = true,
         };
     }
