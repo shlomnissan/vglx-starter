@@ -13,10 +13,8 @@ class Scene : public vglx::Scene {
 public:
     Scene();
 
-    auto OnAttached(vglx::SharedContextPointer context) -> void override;
-
     auto OnUpdate(float delta) -> void override;
 
 private:
-    vglx::Mesh* brick_ {nullptr};
+    vglx::Mesh* cube_ {nullptr};
 };
