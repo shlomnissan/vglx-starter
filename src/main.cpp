@@ -30,7 +30,7 @@ auto main() -> int {
     auto renderer = vglx::Renderer({
         .framebuffer_width = window.FramebufferWidth(),
         .framebuffer_height = window.FramebufferHeight(),
-        .sample_count = kSampleCount,
+        .sample_count = window.SampleCount(),
     });
 
     if (auto result = renderer.Initialize(); !result.has_value()) {
