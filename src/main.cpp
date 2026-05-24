@@ -19,7 +19,6 @@ auto main() -> int {
         .title = "VGLX Starter",
         .width = 1280,
         .height = 720,
-        .sample_count = kSampleCount,
     });
 
     if (auto result = window.Initialize(); !result.has_value()) {
@@ -30,7 +29,7 @@ auto main() -> int {
     auto renderer = vglx::Renderer({
         .framebuffer_width = window.FramebufferWidth(),
         .framebuffer_height = window.FramebufferHeight(),
-        .sample_count = window.SampleCount(),
+        .sample_count = kSampleCount,
     });
 
     if (auto result = renderer.Initialize(); !result.has_value()) {
