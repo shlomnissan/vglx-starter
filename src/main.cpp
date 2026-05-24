@@ -12,11 +12,14 @@
 
 #include "scene.hpp"
 
+constexpr int kSampleCount = 4;
+
 auto main() -> int {
     auto window = vglx::Window ({
         .title = "VGLX Starter",
         .width = 1280,
-        .height = 720
+        .height = 720,
+        .sample_count = kSampleCount,
     });
 
     if (auto result = window.Initialize(); !result.has_value()) {
@@ -26,7 +29,8 @@ auto main() -> int {
 
     auto renderer = vglx::Renderer({
         .framebuffer_width = window.FramebufferWidth(),
-        .framebuffer_height = window.FramebufferHeight()
+        .framebuffer_height = window.FramebufferHeight(),
+        .sample_count = kSampleCount,
     });
 
     if (auto result = renderer.Initialize(); !result.has_value()) {
