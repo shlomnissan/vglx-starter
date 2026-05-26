@@ -15,7 +15,7 @@ Scene::Scene() {
 
     Add(vglx::AmbientLight::Create({
         .color = 0xFFFFFF,
-        .intensity = .5f
+        .intensity = 0.5f
     }));
 
     Add(vglx::PointLight::Create({
@@ -25,6 +25,6 @@ Scene::Scene() {
 }
 
 auto Scene::OnUpdate(float delta) -> void {
-    cube_->RotateX(1.0 * delta);
-    cube_->RotateY(1.0 * delta);
+    cube_->transform.Rotate(vglx::Vector3::Right(), delta);
+    cube_->transform.Rotate(vglx::Vector3::Up(), delta);
 }

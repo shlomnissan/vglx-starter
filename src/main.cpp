@@ -44,7 +44,7 @@ auto main() -> int {
         .far = 1000.0f
     });
 
-    camera->TranslateZ(3.0f);
+    camera->transform.SetPosition({0.0f, 0.0f, 3.0f});
 
     window.OnResize([&camera, &renderer](const vglx::ResizeParameters& p) {
         renderer.SetViewport(0, 0, p.framebuffer_width, p.framebuffer_height);
