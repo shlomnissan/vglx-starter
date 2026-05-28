@@ -10,7 +10,7 @@
 Scene::Scene() {
     cube_ = Add(vglx::Mesh::Create(
         vglx::BoxGeometry::Create(),
-        vglx::PhongMaterial::Create(0x049EF4)
+        vglx::PhongMaterial::Create({.color = 0x049EF4})
     ));
 
     Add(vglx::AmbientLight::Create({
