@@ -2,13 +2,7 @@ find_package(vglx REQUIRED)
 
 set(EXECUTABLE ${PROJECT_NAME})
 
-set(SOURCE_CODE
-    main.cpp
-    scene.cpp
-    scene.hpp
-)
-
-add_executable(${EXECUTABLE} ${SOURCE_CODE})
+add_executable(${EXECUTABLE} main.cpp)
 
 target_link_libraries(${PROJECT_NAME} PRIVATE vglx::vglx)
 

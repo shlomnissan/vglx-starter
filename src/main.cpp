@@ -10,9 +10,26 @@
 
 #include <vglx/vglx.hpp>
 
-#include "scene.hpp"
+struct Scene : public vglx::Scene {
+    vglx::Mesh* cube {nullptr};
 
-constexpr int kSampleCount = 4;
+    Scene() {
+        cube = this->Add(vglx::Mesh::Create(
+            vglx::BoxGeometry::Create(),
+            vglx::PhongMaterial::Create({0x049EF4})
+        ));
+
+        this->Add(vglx::AmbientLight::Create({.intensity = 0.5f}));
+        this->Add(vglx::PointLight::Create({
+            .intensity = 1.0f,
+        }))->transform.Translate({2.0f, 2.5f, 4.0f});
+    }
+
+    auto OnUpdate(float dt) -> void override {
+        cube->transform.Rotate(vglx::Vector3::Right(), dt);
+        cube->transform.Rotate(vglx::Vector3::Up(), dt);
+    }
+};
 
 auto main() -> int {
     auto window = vglx::Window ({
@@ -29,7 +46,7 @@ auto main() -> int {
     auto renderer = vglx::Renderer({
         .framebuffer_width = window.FramebufferWidth(),
         .framebuffer_height = window.FramebufferHeight(),
-        .sample_count = kSampleCount,
+        .sample_count = 4,
     });
 
     if (auto result = renderer.Initialize(); !result.has_value()) {
@@ -51,13 +68,14 @@ auto main() -> int {
         camera->Resize(p.window_width, p.window_height);
     });
 
-    auto my_scene = std::make_unique<Scene>();
+    auto scene = std::make_unique<Scene>();
 
     auto timer = vglx::FrameTimer {true};
+
     while (!window.ShouldClose()) {
         window.PollEvents();
-        my_scene->Advance(timer.Tick());
-        renderer.Render(my_scene.get(), camera.get());
+        scene->Advance(timer.Tick());
+        renderer.Render(scene.get(), camera.get());
         window.SwapBuffers();
     }
 
