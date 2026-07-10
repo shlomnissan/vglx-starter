@@ -26,8 +26,8 @@ struct Scene : public vglx::Scene {
     }
 
     auto OnUpdate(float dt) -> void override {
-        cube->transform.Rotate(vglx::Vector3::Right(), dt);
-        cube->transform.Rotate(vglx::Vector3::Up(), dt);
+        cube->transform.Rotate(vglx::Vector3::X(), dt);
+        cube->transform.Rotate(vglx::Vector3::Y(), dt);
     }
 };
 
