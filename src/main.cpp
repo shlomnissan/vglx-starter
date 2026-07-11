@@ -19,9 +19,9 @@ struct Scene : public vglx::Scene {
             vglx::PhongMaterial::Create({0x049EF4})
         ));
 
-        this->Add(vglx::AmbientLight::Create({.intensity = 0.5f}));
-        this->Add(vglx::PointLight::Create({
-            .intensity = 1.0f,
+        Add(vglx::AmbientLight::Create({.intensity = 0.5f}));
+        Add(vglx::PointLight::Create({
+            .intensity = 32.0f,
         }))->transform.Translate({2.0f, 2.5f, 4.0f});
     }
 
