@@ -63,9 +63,15 @@ auto main() -> int {
 
     camera->transform.SetPosition({0.0f, 0.0f, 3.0f});
 
-    window.OnResize([&camera, &renderer](const vglx::ResizeParameters& p) {
-        renderer.SetViewport(0, 0, p.framebuffer_width, p.framebuffer_height);
-        camera->Resize(p.window_width, p.window_height);
+    window.OnResize([&](const vglx::ResizeParameters& params){
+        renderer.SetViewport(
+            0, 0,
+            params.framebuffer_width,
+            params.framebuffer_height,
+            params.content_scale
+        );
+
+        camera->Resize(params.window_width, params.window_height);
     });
 
     auto scene = std::make_unique<Scene>();
