@@ -44,12 +44,10 @@ auto main() -> int {
     }
 
     auto renderer = vglx::Renderer({
-        .framebuffer_width = window.FramebufferWidth(),
-        .framebuffer_height = window.FramebufferHeight(),
         .sample_count = 4,
     });
 
-    if (auto result = renderer.Initialize(); !result.has_value()) {
+    if (auto result = renderer.Initialize(window); !result.has_value()) {
         std::println(stderr, "{}", result.error());
         return 1;
     }
@@ -64,13 +62,6 @@ auto main() -> int {
     camera->transform.SetPosition({0.0f, 0.0f, 3.0f});
 
     window.OnResize([&](const vglx::ResizeParameters& params){
-        renderer.SetViewport(
-            0, 0,
-            params.framebuffer_width,
-            params.framebuffer_height,
-            params.content_scale
-        );
-
         camera->Resize(params.window_width, params.window_height);
     });
 
