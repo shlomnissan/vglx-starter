@@ -6,13 +6,13 @@ A minimal C++ project that shows how to set up a simple scene in [VGLX](https://
 
 - A basic application that initializes VGLX
 - A rotating cube rendered with a simple material
-- A clean CMake setup using `find_package(vglx REQUIRED)`
+- A clean CMake setup that pulls VGLX into the build with `FetchContent`
 
-This project is intentionally small. Its purpose is to help you verify your installation, understand the engine’s initialization flow, and give you a place to begin experimenting with your own scenes.
+This project is intentionally small. Its purpose is to help you verify your setup, understand the engine’s initialization flow, and give you a place to begin experimenting with your own scenes.
 
 ### Getting Started
 
-The starter expects VGLX to be installed on your system. See the [VGLX Installation Guide](https://www.vglx.org/manual/installation) for instructions.
+You need a C++23 compiler and [CMake](https://cmake.org/) 3.25 or newer. VGLX itself does not need to be installed: the first configure downloads it and builds it as part of this project.
 
 Clone the repository and build the project using CMake:
 
@@ -21,28 +21,21 @@ Clone the repository and build the project using CMake:
 git clone https://github.com/shlomnissan/vglx-starter.git
 cd vglx-starter
 
-# create a build directory (recommended)
-mkdir build
-cd build
-
 # configure the project
-# (set CMAKE_PREFIX_PATH if VGLX is installed in a custom location)
-cmake .. --config Debug -DCMAKE_PREFIX_PATH=/path/to/vglx
+cmake -S . -B build -DCMAKE_BUILD_TYPE=Debug
 
 # compile the application
-cmake --build . --config Debug
+cmake --build build --config Debug
 ```
 
-On Windows, the VGLX DLL must be located next to the executable. The CMake script included in this template handles copying the DLL automatically.
+VGLX links statically so no runtime files need to be copied next to the executable. To build against a copy of VGLX you already have installed, see the [VGLX Installation Guide](https://www.vglx.org/manual/installation).
 
-After a successful build, run the executable. You should see a rotating cube. If the application launches and the cube animates, your VGLX installation is working correctly.
+After a successful build, run the executable. You should see a rotating cube. If the application launches and the cube animates, your setup is working correctly.
 
 ### Troubleshooting
 
-If the application fails to run:
-- Ensure VGLX was installed using the official installer
-- Verify that `CMAKE_PREFIX_PATH` points to the VGLX install
-- On Windows, check that the DLL was copied next to the executable
-- Make sure your GPU driver supports OpenGL 4.1 or newer
+If you run into problems, please [open an issue on GitHub](https://github.com/shlomnissan/vglx-starter/issues). If possible include:
 
-If you’re still stuck, open an issue in the main VGLX repo and include your OS, compiler, and CMake logs.
+- Your OS and compiler version
+- CMake command you ran
+- CMake or compiler logs
